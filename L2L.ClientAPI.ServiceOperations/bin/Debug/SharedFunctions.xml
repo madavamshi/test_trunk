@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharedFunctions</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "M:SharedFunctions.BasicUtilities.StandardizeBedBathMix(System.String)" -->
+        <member name="M:SharedFunctions.BasicUtilities.SplitNames(System.String)">
+             <summary>
+             Returns array of FirstName, Middle, LastName.
+            If there is an and in the name it is a combination name
+             Currently these cases are being returned in the first name.
+             Returns hashtable, keys are prefix, middle, first, last - last is the 'dump field' where extra info goes
+             </summary>
+             <param name="aFullName">The full name to be split</param>
+             <returns>hashtable, keys are prefix, middle, first, last - last is the 'dump field' where extra info goes</returns>
+             <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.BasicUtilities.FromXml(System.String,System.Type)">
+            <summary>
+            Creates an object from an XML string.
+            </summary>
+            <param name="Xml"></param>
+            <param name="ObjType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharedFunctions.BasicUtilities.FromXml(System.String,System.Type,System.Boolean)">
+            <summary>
+            Creates an object from an XML string.
+            </summary>
+            <param name="Xml"></param>
+            <param name="ObjType"></param>
+            <param name="isMITS">whether or not to include the mits namespace</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharedFunctions.BasicUtilities.ToXml(System.Object)">
+            <summary>
+            Serializes the <i>Obj</i> to an XML string.
+            </summary>
+            <param name="Obj"></param>
+            <param name="ObjType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharedFunctions.BasicUtilities.ToXml(System.Object,System.Boolean)">
+            <summary>
+            Serializes the Obj to an XML string.
+            </summary>
+            <param name="Obj"></param>
+            <param name="isMITS"></param>
+            <returns>whether or not to include the mits namespace</returns>
+        </member>
+        <member name="M:SharedFunctions.BasicUtilities.GetNamespaces">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:SharedFunctions.BasicUtilities.Server">
+            <summary>
+            console-safe version of HttpContext.Current.Server
+            </summary>
+        </member>
+        <member name="T:SharedFunctions.DataHandler.SQL_Base">
+            <summary>
+            This class reads from a connection string set as 'DBString' for all of its database actions. 
+            if this is blank it sets the connection string to "" and any access will fail.
+            You may call a manual set by calling the method 'ChangeDBString'
+            </summary>
+        </member>
+        <member name="F:SharedFunctions.DataHandler.SQL_Base.SQL_CONN">
+            <summary>
+            Default conn string set from connections string in the app.config named 'DbString'
+            </summary>
+        </member>
+        <member name="M:SharedFunctions.DataHandler.SQL_Base.SetDefaultConnString">
+            <summary>
+            sets Default conn string set from connections string in the app.config named 'DbString'
+            </summary>
+        </member>
+        <member name="M:SharedFunctions.DataHandler.SQL_Base.ChangeDBString(System.String)">
+            <summary>
+            changes the conn string to be the new one passed in
+            </summary>
+        </member>
+        <member name="M:SharedFunctions.DataHandler2.SQL_Base.GetDefaultConnString">
+            <summary>
+            sets Default conn string set from connections string in the app.config named 'DbString'
+            </summary>
+        </member>
+        <member name="M:SharedFunctions.DataHandler2.SQL_Base.ChangeDBString(System.String)">
+            <summary>
+            changes the conn string to be the new one passed in
+            </summary>
+        </member>
+        <member name="P:SharedFunctions.DataHandler2.SQL_Base.SQL_CONN">
+            <summary>
+            Default conn string set from connections string in the app.config named 'DbString'
+            </summary>
+        </member>
+        <member name="T:SharedFunctions.FTP.FTPclient">
+            <summary>
+            A wrapper class for .NET 2.0 FTP
+            </summary>
+            <remarks>
+            This class does not hold open an FTP connection but
+            instead is stateless: for each FTP request it
+            connects, performs the request and disconnects.
+            </remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.#ctor">
+            <summary>
+            Blank constructor
+            </summary>
+            <remarks>Hostname, username and password must be set manually</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.#ctor(System.String)">
+            <summary>
+            Constructor just taking the hostname
+            </summary>
+            <param name="Hostname">in either ftp://ftp.host.com or ftp.host.com form</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor taking hostname, username and password
+            </summary>
+            <param name="Hostname">in either ftp://ftp.host.com or ftp.host.com form</param>
+            <param name="Username">Leave blank to use 'anonymous' but set password to your email</param>
+            <param name="Password"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.ListDirectory(System.String)">
+            <summary>
+            Return a simple directory listing
+            </summary>
+            <param name="directory">Directory to list, e.g. /pub</param>
+            <returns>A list of filenames and directories as a List(of String)</returns>
+            <remarks>For a detailed directory listing, use ListDirectoryDetail</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.ListDirectoryDetail(System.String)">
+            <summary>
+            Return a detailed directory listing
+            </summary>
+            <param name="directory">Directory to list, e.g. /pub/etc</param>
+            <returns>An FTPDirectory object</returns>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.Upload(System.String,System.String,System.Boolean)">
+            <summary>
+            Copy a local file to the FTP server
+            </summary>
+            <param name="localFilename">Full path of the local file</param>
+            <param name="targetFilename">Target filename, if required</param>
+            <param name="isPassive">Whether to use passive mode</param>
+            <returns></returns>
+            <remarks>If the target filename is blank, the source filename is used
+            (assumes current directory). Otherwise use a filename to specify a name
+            or a full path and filename if required.</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.Upload(System.IO.FileInfo,System.String,System.Boolean)">
+            <summary>
+            Upload a local file to the FTP server
+            </summary>
+            <param name="fi">Source file</param>
+            <param name="targetFilename">Target filename (optional)</param>
+            <param name="isPassive">Whether to use passive mode</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.Download(System.String,System.String,System.Boolean)">
+            <summary>
+            Copy a file from FTP server to local
+            </summary>
+            <param name="sourceFilename">Target filename, if required</param>
+            <param name="localFilename">Full path of the local file</param>
+            <returns></returns>
+            <remarks>Target can be blank (use same filename), or just a filename
+            (assumes current directory) or a full path and filename</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.FtpDelete(System.String)">
+            <summary>
+            Delete remote file
+            </summary>
+            <param name="filename">filename or full path</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.FtpFileExists(System.String)">
+            <summary>
+            Determine if file exists on remote FTP site
+            </summary>
+            <param name="filename">Filename (for current dir) or full path</param>
+            <returns></returns>
+            <remarks>Note this only works for files</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.GetFileSize(System.String)">
+            <summary>
+            Determine size of remote file
+            </summary>
+            <param name="filename"></param>
+            <returns></returns>
+            <remarks>Throws an exception if file does not exist</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.GetCredentials">
+            <summary>
+            Get the credentials from username/password
+            </summary>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.GetFullPath(System.String)">
+            <summary>
+            returns a full path using CurrentDirectory for a relative file reference
+            </summary>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.AdjustDir(System.String)">
+            <summary>
+            Amend an FTP path so that it always starts with /
+            </summary>
+            <param name="path">Path to adjust</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.GetStringResponse(System.Net.FtpWebRequest)">
+            <summary>
+            Obtains a response stream as a string
+            </summary>
+            <param name="ftp">current FTP request</param>
+            <returns>String containing response</returns>
+            <remarks>FTP servers typically return strings with CR and
+            not CRLF. Use respons.Replace(vbCR, vbCRLF) to convert
+            to an MSDOS string</remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPclient.GetSize(System.Net.FtpWebRequest)">
+            <summary>
+            Gets the size of an FTP request
+            </summary>
+            <param name="ftp"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="F:SharedFunctions.FTP.FTPclient._currentDirectory">
+            <summary>
+            The CurrentDirectory value
+            </summary>
+            <remarks>Defaults to the root '/'</remarks>
+        </member>
+        <member name="P:SharedFunctions.FTP.FTPclient.Hostname">
+            <summary>
+            Hostname
+            </summary>
+            <value></value>
+            <remarks>Hostname can be in either the full URL format
+            ftp://ftp.myhost.com or just ftp.myhost.com
+            </remarks>
+        </member>
+        <member name="P:SharedFunctions.FTP.FTPclient.Username">
+            <summary>
+            Username property
+            </summary>
+            <value></value>
+            <remarks>Can be left blank, in which case 'anonymous' is returned</remarks>
+        </member>
+        <member name="T:SharedFunctions.FTP.FTPfileInfo">
+            <summary>
+            Represents a file or directory entry from an FTP listing
+            </summary>
+            <remarks>
+            This class is used to parse the results from a detailed
+            directory list from FTP. It supports most formats of
+            </remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPfileInfo.#ctor(System.String,System.String)">
+            <summary>
+            Constructor taking a directory listing line and path
+            </summary>
+            <param name="line">The line returned from the detailed directory list</param>
+            <param name="path">Path of the directory</param>
+            <remarks></remarks>
+        </member>
+        <member name="F:SharedFunctions.FTP.FTPfileInfo._ParseFormats">
+            <summary>
+            List of REGEX formats for different FTP server listing formats
+            </summary>
+            <remarks>
+            The first three are various UNIX/LINUX formats, fourth is for MS FTP
+            in detailed mode and the last for MS FTP in 'DOS' mode.
+            I wish VB.NET had support for Const arrays like C# but there you go
+            </remarks>
+        </member>
+        <member name="T:SharedFunctions.FTP.FTPfileInfo.DirectoryEntryTypes">
+            <summary>
+            Identifies entry as either File or Directory
+            </summary>
+        </member>
+        <member name="T:SharedFunctions.FTP.FTPdirectory">
+            <summary>
+            Stores a list of files and directories from an FTP result
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPdirectory.#ctor(System.String,System.String)">
+            <summary>
+            Constructor: create list from a (detailed) directory string
+            </summary>
+            <param name="dir">directory listing string</param>
+            <param name="path"></param>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPdirectory.GetFiles(System.String)">
+            <summary>
+            Filter out only files from directory listing
+            </summary>
+            <param name="ext">optional file extension filter</param>
+            <returns>FTPdirectory listing</returns>
+        </member>
+        <member name="M:SharedFunctions.FTP.FTPdirectory.GetDirectories">
+            <summary>
+            Returns a list of only subdirectories
+            </summary>
+            <returns>FTPDirectory list</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:SharedFunctions.Standardization.LeadSourceStandardization.MatchSource(System.String)">
+            <summary>
+            Unless stated otherwise will match for sources by looking at the start of the passed in string
+            and not caring what it ends with.
+            </summary>
+        </member>
+    </members>
+</doc>
